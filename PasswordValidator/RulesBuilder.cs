@@ -17,9 +17,9 @@ namespace CruxLabTT.PasswordValidator
             _rules.Add(new(rule));
         }
 
-        public List<ValidationRule> Build()
+        public PasswordValidator Build()
         {
-            return _rules;
+            return new(_rules);
         }
     }
 }

@@ -19,11 +19,6 @@ namespace CruxLabTT.PasswordValidator
             _validationRules = validationRules.ToList();
         }
 
-        public PasswordValidator(RulesBuilder rulesBuilder)
-        {
-            _validationRules = rulesBuilder.Build();
-        }
-
         public void AddRule(Func<string, ValidationResult> rule)
         {
             _validationRules.Add(new(rule));
