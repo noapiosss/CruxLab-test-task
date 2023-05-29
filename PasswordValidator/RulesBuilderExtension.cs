@@ -27,12 +27,9 @@ namespace CruxLabTT.PasswordValidator
                     }
                 }
 
-                if (matchesCount < minMatchesCount)
-                {
-                    return new(false, $"Password contians less then {minMatchesCount} '{sign}' sign's");
-                }
-
-                return matchesCount > maxMatchesCount
+                return matchesCount < minMatchesCount
+                    ? new(false, $"Password contians less then {minMatchesCount} '{sign}' sign's")
+                    : matchesCount > maxMatchesCount
                     ? new(false, $"Password contians more then {minMatchesCount} '{sign}' sign's")
                     : new(true, "Password contians exceptable count of '{sign}' sign's");
             }

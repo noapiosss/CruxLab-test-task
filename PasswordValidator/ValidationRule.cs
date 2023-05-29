@@ -1,8 +1,9 @@
 using System;
+using CruxLabTT.PasswordValidator.Interfaces;
 
 namespace CruxLabTT.PasswordValidator
 {
-    public class ValidationRule
+    public class ValidationRule : IValidationRule
     {
         private readonly Func<string, ValidationResult> _rule;
 

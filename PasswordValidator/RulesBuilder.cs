@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using CruxLabTT.PasswordValidator.Interfaces;
 
 namespace CruxLabTT.PasswordValidator
 {
     public class RulesBuilder
     {
-        private readonly List<ValidationRule> _rules;
+        private readonly List<IValidationRule> _rules;
 
         public RulesBuilder()
         {
@@ -14,12 +15,12 @@ namespace CruxLabTT.PasswordValidator
 
         public void AddRule(Func<string, ValidationResult> rule)
         {
-            _rules.Add(new(rule));
+            _rules.Add(new ValidationRule(rule));
         }
 
         public PasswordValidator Build()
         {
-            return new(_rules);
+            return new PasswordValidator(_rules);
         }
     }
 }

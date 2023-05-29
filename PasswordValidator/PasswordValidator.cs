@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using CruxLabTT.PasswordValidator.Interfaces;
@@ -7,26 +6,21 @@ namespace CruxLabTT.PasswordValidator
 {
     public class PasswordValidator : IValidator
     {
-        private readonly List<ValidationRule> _validationRules;
+        private readonly List<IValidationRule> _validationRules;
 
         public PasswordValidator()
         {
             _validationRules = new();
         }
 
-        public PasswordValidator(IEnumerable<ValidationRule> validationRules)
+        public PasswordValidator(IEnumerable<IValidationRule> validationRules)
         {
             _validationRules = validationRules.ToList();
         }
 
-        public void AddRule(Func<string, ValidationResult> rule)
-        {
-            _validationRules.Add(new(rule));
-        }
-
         public ValidationResult IsValid(string password)
         {
-            foreach (ValidationRule rule in _validationRules)
+            foreach (ValidationRule rule in _validationRules.Cast<ValidationRule>())
             {
                 if (!rule.IsValid(password, out ValidationResult ValidationResult))
                 {
