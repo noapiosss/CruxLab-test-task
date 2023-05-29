@@ -4,7 +4,7 @@ using CruxLabTT.PasswordValidator.Interfaces;
 
 namespace CruxLabTT.PasswordValidator
 {
-    public class RulesBuilder
+    public class RulesBuilder : IRulesBuilder
     {
         private readonly List<IValidationRule> _rules;
 
@@ -18,7 +18,7 @@ namespace CruxLabTT.PasswordValidator
             _rules.Add(new ValidationRule(rule));
         }
 
-        public PasswordValidator Build()
+        public PasswordValidator Build() // should be abstract validator
         {
             return new PasswordValidator(_rules);
         }

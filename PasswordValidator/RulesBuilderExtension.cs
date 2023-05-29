@@ -1,16 +1,17 @@
 using System;
+using CruxLabTT.PasswordValidator.Interfaces;
 
 namespace CruxLabTT.PasswordValidator
 {
     public static class RulesBuilderExtension
     {
-        private static RulesBuilder NewRule(this RulesBuilder rulesBuilder, Func<string, ValidationResult> func)
+        private static IRulesBuilder NewRule(this IRulesBuilder rulesBuilder, Func<string, ValidationResult> func)
         {
             rulesBuilder.AddRule(func);
             return rulesBuilder;
         }
 
-        public static RulesBuilder CharMatches(this RulesBuilder rulesBuilder,
+        public static IRulesBuilder CharMatches(this IRulesBuilder rulesBuilder,
             char sign,
             int minMatchesCount,
             int maxMatchesCount)

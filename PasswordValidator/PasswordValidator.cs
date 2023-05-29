@@ -8,17 +8,17 @@ namespace CruxLabTT.PasswordValidator
     {
         private readonly List<IValidationRule> _validationRules;
 
-        public PasswordValidator()
-        {
-            _validationRules = new();
-        }
-
         public PasswordValidator(IEnumerable<IValidationRule> validationRules)
         {
             _validationRules = validationRules.ToList();
         }
 
-        public ValidationResult IsValid(string password)
+        public void AddRule(IValidationRule rule)
+        {
+            _validationRules.Add(rule);
+        }
+
+        public ValidationResult Validate(string password)
         {
             foreach (ValidationRule rule in _validationRules.Cast<ValidationRule>())
             {
